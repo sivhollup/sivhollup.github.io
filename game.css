@@ -6,6 +6,10 @@ div {
   color: green;
 }
 
+.canvasBorder {
+  border: 1px solid #000000;
+}
+
 #helloDiv {
   color: red;
 }
