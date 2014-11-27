@@ -22,15 +22,17 @@ var makeSquare = function (event) {
     squares.push(square);
 };
 
-var draw = function () {
+var gameLoop = function () {
     if (squares.size === 0) {
         return;
     }
-    window.requestAnimationFrame(draw);
+    window.requestAnimationFrame(gameLoop);
     redraw();
 };
 
 var redraw = function () {
+    if(!context) return;
+
     context.clearRect(0, 0, 400, 400);
     squares.forEach(function (square) {
         square = computeMove(square);
@@ -85,4 +87,4 @@ var topEdgeIsReached = function (square) {
     return (square.y <= 1);
 };
 
-draw();
+gameLoop();
