@@ -20,7 +20,7 @@ var MyGame = function () {
         this.squares.forEach(function (square) {
             square.computeSquareMove();
             context.beginPath();
-            context.rect(square.x, square.y, 15, 15);
+            context.rect(square.x, square.y, 16, 16);
             context.stroke();
             context.closePath();
         });
@@ -38,10 +38,27 @@ var gameLoop = function () {
 var Square = function () {
     this.x = -1;
     this.y = -1;
+    this.goingRight = 1;
+    this.goingDown = 1;
 
     this.computeSquareMove = function () {
-        this.x += 2;
-        this.y += 2;
+        if (this.x >= 385) {
+            this.goingRight = -1;
+        }
+
+        if (this.x <= 0) {
+            this.goingRight = 1;
+        }
+
+        if (this.y >= 385) {
+            this.goingDown = -1;
+        }
+
+        if (this.y <= 0) {
+            this.goingDown = 1;
+        }
+        this.x += 1*this.goingRight;
+        this.y += 1*this.goingDown;
     };
 };
 
