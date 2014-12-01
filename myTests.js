@@ -50,6 +50,24 @@ function bounceSquareBackWhenHittingTopEdgeOfCanvas() {
     MyTestFramework.assertThat(square.y, expected);
 }
 
+function bounceSquareHorisontallyWhenCollidingWithAnotherSquare() {
+    var items = new Squares();
+    var square = makeBasicSquare();
+    var square2 = makeBasicSquare();
+    square2.x += 8;
+    square2.goingRight = -1;
+    items.squares.push(square);
+    items.squares.push(square2);
+    var expected = square.x - 1;
+    var expected2 = square2.x + 1;
+
+    items.detectCollisions();
+    square.computeSquareMove();
+    square2.computeSquareMove();
+
+    MyTestFramework.assertThat(square.x, expected);
+    MyTestFramework.assertThat(square2.x, expected2);
+}
 
 function makeBasicSquare() {
     var square = new Square();
@@ -65,4 +83,5 @@ function makeBasicSquare() {
     bounceSquareBackWhenHittingLeftEdgeOfCanvas();
     bounceSquareBackWhenHittingBottomEdgeOfCanvas();
     bounceSquareBackWhenHittingTopEdgeOfCanvas();
+    bounceSquareHorisontallyWhenCollidingWithAnotherSquare();
 })();
